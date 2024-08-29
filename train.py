@@ -71,7 +71,7 @@ def init_dataset_kwargs(data: str, resolution: int) -> dnnlib.EasyDict:
 @click.option('--resume',          help='Resume from given network pickle', type=str)
 @click.option('--resume-kimg',     help='Resume from given kimg',           type=click.IntRange(min=0), default=0)
 # Training params.
-@click.option('--train-mode',      help='Which layers to train',            type=click.Choice(['all', 'text_encoder', 'freeze64']), default='all')
+@click.option('--train-mode',      help='Which layers to train',            type=click.Choice(['all', 'text_encoder', 'freeze16', 'freeze32', 'freeze64', 'freeze128', 'freeze256']), default='all')
 @click.option('--clip-weight',     help='Loss weight for clip loss',        type=float, default=0)
 @click.option('--blur-init',       help='Init blur width',                  type=click.IntRange(min=0), default=32,)
 @click.option('--blur-fade-kimg',  help='Discriminator blur duration',      type=click.IntRange(min=0), default=1000)
