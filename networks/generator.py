@@ -587,8 +587,20 @@ class Generator(torch.nn.Module):
             self.trainable_layers = ['synthesis', 'mapping.mlp']
         elif train_mode == 'text_encoder':
             self.trainable_layers = ['clip']
+        elif train_mode == 'freeze16':
+            self.trainable_layers = [f"b{x}" for x in self.synthesis.block_resolutions if x > 16]
+            self.trainable_layers += ['torgb']
+        elif train_mode == 'freeze32':
+            self.trainable_layers = [f"b{x}" for x in self.synthesis.block_resolutions if x > 32]
+            self.trainable_layers += ['torgb']
         elif train_mode == 'freeze64':
             self.trainable_layers = [f"b{x}" for x in self.synthesis.block_resolutions if x > 64]
+            self.trainable_layers += ['torgb']
+        elif train_mode == 'freeze128':
+            self.trainable_layers = [f"b{x}" for x in self.synthesis.block_resolutions if x > 128]
+            self.trainable_layers += ['torgb']
+        elif train_mode == 'freeze256':
+            self.trainable_layers = [f"b{x}" for x in self.synthesis.block_resolutions if x > 256]
             self.trainable_layers += ['torgb']
 
     def forward(
